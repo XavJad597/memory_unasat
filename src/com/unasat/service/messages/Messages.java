@@ -70,7 +70,7 @@ public class Messages {
     }
 
     public void earlyGameOver() {
-        System.out.println("  You've made more than 3 mistakes");
+        System.out.println("  You've made more than 10 mistakes");
         System.out.println("Sadly, we have to end the game early");
         System.out.println("              Game over              ");
     }
