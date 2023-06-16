@@ -5,22 +5,21 @@ import java.util.Collections;
 
 public class Deck {
 
+    //Variables
     protected ArrayList<Card> cardArray;
 
+    //Constructors
     public Deck(String[] cardValues) {
+
+        // Create a new ArrayList to store the cards
         cardArray = new ArrayList<>();
+
+        // Creates new Card Object for each String value inserted into the for-loop
         for (String value : cardValues) {
             cardArray.add(new Card(value));
         }
     }
-
-
-    public void displayCards() {
-        System.out.println(cardArray);
-    }
-
-    public void shuffleDeck() {
-        Collections.shuffle(cardArray);
+    public Deck() {
     }
 
 }
@@ -30,7 +29,6 @@ class FirstDeck extends Deck {
     public FirstDeck() {
         super(new String[]{"A", "A", "B", "B", "C", "C", "D", "D", "E", "E", "F", "F"});
     }
-
 }
 
 class SecondDeck extends Deck {
