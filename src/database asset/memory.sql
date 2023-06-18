@@ -39,3 +39,23 @@ hard_level               int
            
 -- foreign keys ---
 
+
+alter table game 
+add foreign key (player_id) references player(player_id);
+
+alter table activity
+add foreign key (player_id) references player(player_id);
+
+alter table activity
+add foreign key (game_id) references game(game_id);
+
+
+alter table game_levels
+add foreign key (game_id) references game(game_id);
+
+
+alter table game_levels
+add foreign key (player_id) references player(player_id);
+
+-- end foreign key ---
+
