@@ -1,17 +1,20 @@
 package com.unasat.repository.entity.person;
 
-import java.util.Scanner;
 import com.unasat.config.DatabaseManager;
 
+import java.util.Scanner;
+
 public class SignUp {
-    public void signUp() {
+    private DatabaseManager databaseManager ;
+    public SignUp(DatabaseManager databaseManager) {
+        this.databaseManager = databaseManager;
+    }
+    public void signUp(String userName,String userPassword) {
         // player info
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome!");
         System.out.println(" Sign up");
 
-        String userName = ""; // Declare the variables outside the switch statement
-        String userPassword = "";
 
         System.out.print("Enter your birthdate:   ");
         String birthDate = scanner.nextLine();
