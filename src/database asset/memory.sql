@@ -3,7 +3,6 @@ use memoryG;
 
 create table player (
 player_id int auto_increment primary key,
-player_name     varchar(50),
 birth_date      date,
 username      varchar(50) unique,
 password      varchar(50)
