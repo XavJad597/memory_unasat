@@ -10,7 +10,7 @@ password      varchar(50)
 );
 
 create table game (
-game_id    int primary key,     /* primary key */       
+game_id    int auto_increment primary key,     /* primary key */       
 player_id    int , /*foreign key*/
 start_time     time(6),
 end_time   time (6),
