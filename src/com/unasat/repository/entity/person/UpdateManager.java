@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class UpdateManager {
     DatabaseManager manageUpdate;
@@ -18,17 +17,6 @@ public class UpdateManager {
 
 
     public boolean updateProfile(String newUsername, String newPassword)throws SQLException {
-         Scanner scanner=new Scanner(System.in);
-
-        System.out.print("Enter your new username: ");
-        newUsername = scanner.nextLine();
-        System.out.print("Enter your new password: ");
-        newPassword = scanner.nextLine();
-
-        if(!profileExists(newUsername)) {
-            System.out.println("Profile does not exist");
-       return false;
-}
         String updateQuery = "UPDATE player SET  p_password = ? WHERE username = ?";
         Connection connection = manageUpdate.getConnection();
 
@@ -40,7 +28,7 @@ public class UpdateManager {
             int rowsAffected = updateStatement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            System.out.println("Error: Failed to connect to the database.");
+            System.out.println("Error occurred during profile update: " + e.getMessage());
             e.printStackTrace();
         } finally {
             if (connection != null) {
@@ -56,19 +44,18 @@ public class UpdateManager {
         return false;
     }
 
-
-  public   boolean profileExists(String username) throws SQLException {
-        String selectQuery = "SELECT * FROM player WHERE username = ?";
+  public   boolean profileExists(String userName,String userPassword) throws SQLException {
+        String selectQuery = "SELECT * FROM player WHERE username = ? AND p_password=?";
         Connection connection = manageUpdate.getConnection();
 
         try {
             PreparedStatement selectStatement = connection.prepareStatement(selectQuery);
-            selectStatement.setString(1, username);
-
+            selectStatement.setString(1, userName);
+            selectStatement.setString(2,userPassword);
             ResultSet resultSet = selectStatement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
-            System.out.println("Error: Failed to execute the select query.");
+            System.out.println("Error occurred during profile update: " + e.getMessage());
             e.printStackTrace();
         } finally {
             if (connection != null) {

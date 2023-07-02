@@ -61,9 +61,17 @@ public class Menu {
                     sign.signUp(userName, userPassword);
                     break;
                 case 3: try {
+
+                    System.out.print("Enter your new username: ");
+                    newUsername = scanner.nextLine();
+                    System.out.print("Enter your new password: ");
+                    newPassword = scanner.nextLine();
+
+
                     boolean profileUpdated = update.updateProfile(newUsername, newPassword);
                     if (profileUpdated) {
                         System.out.println("Profile updated successfully!");
+                        // Continue with any additional logic
                     } else {
                         System.out.println("Failed to update profile.");
                     }

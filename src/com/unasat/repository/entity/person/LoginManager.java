@@ -13,6 +13,8 @@ public class LoginManager {
 
     public LoginManager(DatabaseManager loginManager) {
         this.databaseManager = loginManager;
+
+
     }
 
     // Login to your profile
@@ -25,13 +27,11 @@ public class LoginManager {
         System.out.print("Enter your password: ");
         userPassword = scanner.nextLine();
 
-
+        Connection connection = databaseManager.getConnection();
 
         // Extract the users' info with parameterized values
         String selectQuery = "SELECT * FROM player WHERE username = ? AND p_password = ?";
 
-        // Get the connection from the DatabaseManager instance
-        Connection connection = databaseManager.getConnection();
 
         try {
             PreparedStatement loginStatement = connection.prepareStatement(selectQuery);
@@ -51,5 +51,8 @@ public class LoginManager {
         return false;
     }
 }
+
+
+
 
 

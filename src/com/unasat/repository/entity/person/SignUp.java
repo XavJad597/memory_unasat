@@ -37,6 +37,7 @@ public class SignUp {
     }
 }
 
+
                 // log in functionatility
            /* case 2:
 
