@@ -1,41 +1,60 @@
 package com.unasat.service.operations;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
-public class Deck {
+public abstract class Deck {
 
-    //Variables
-    protected ArrayList<Card> cardArray;
+    protected ArrayList<Character> cardArray;
+    protected ArrayList<Boolean> flippedCards;
+    protected ArrayList<Character> shuffledCards;
 
-    //Constructors
-    public Deck(String[] cardValues) {
+    public Deck(Character[] cardValues) {
+        cardArray = new ArrayList<>(Arrays.asList(cardValues));
+        flippedCards = new ArrayList<>();
+        shuffledCards = new ArrayList<>();
 
-        // Create a new ArrayList to store the cards
-        cardArray = new ArrayList<>();
-
-        // Creates new Card Object for each String value inserted into the for-loop
-        for (String value : cardValues) {
-            cardArray.add(new Card(value));
+        for (int i = 0; i < cardArray.size(); i++) {
+            flippedCards.add(false);
         }
-    }
-    public Deck() {
+
+        // Shuffle the cardArray and assign the shuffled elements to shuffledCards
+        Collections.shuffle(cardArray);
+        shuffledCards.addAll(cardArray);
     }
 
+    public int getTotalCards() {
+        return cardArray.size();
+    }
+
+    public boolean isCardFlipped(int cardNumber) {
+        return flippedCards.get(cardNumber - 1);
+    }
+
+    public void flipCard(int cardNumber) {
+        flippedCards.set(cardNumber - 1, true);
+    }
+
+    public ArrayList<Character> getShuffledCards() {
+        return shuffledCards;
+    }
 }
+
 
 class FirstDeck extends Deck {
 
     public FirstDeck() {
-        super(new String[]{"A", "A", "B", "B", "C", "C", "D", "D", "E", "E", "F", "F"});
+        super(new Character[]{'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F'});
     }
+
 }
 
 class SecondDeck extends Deck {
 
     public SecondDeck() {
-        super(new String[]{"A", "A", "B", "B", "C", "C", "D", "D", "E", "E",
-                           "F", "F", "G", "G", "H", "H", "I", "I", "J", "J"});
+        super(new Character[]{'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E',
+                           'F', 'F', 'G', 'G', 'H', 'H', 'I', 'I', 'J', 'J'});
     }
 
 }
@@ -43,9 +62,9 @@ class SecondDeck extends Deck {
 class ThirdDeck extends Deck {
 
     public ThirdDeck() {
-        super(new String[]{"A", "A", "B", "B", "C", "C", "D", "D", "E", "E",
-                           "F", "F", "G", "G", "H", "H", "I", "I", "J", "J",
-                           "K", "K", "L", "L", "M", "M", "N", "N", "O", "O"});
+        super(new Character[]{'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E',
+                           'F', 'F', 'G', 'G', 'H', 'H', 'I', 'I', 'J', 'J',
+                           'K', 'K', 'L', 'L', 'M', 'M', 'N', 'N', 'O', 'O'});
     }
 
 }
