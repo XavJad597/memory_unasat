@@ -237,7 +237,7 @@ public class GameController {
 //        gameBoard.printBoard();
     }
 
-    private int calculatePoints() {
+   public int calculatePoints() {
         int remainingMistakes = 10 - currentLevel.getMistakes();
         return (currentLevel.getPoints()) + ((remainingMistakes > 0) ? remainingMistakes * 3 : 0);
     }
