@@ -10,16 +10,17 @@ public class GameController {
     private int levelNumber;
     private Deck currentDeck;
     private GameBoard gameBoard;
-    private ArrayList<Character> board;
+    private int totalPoints; // Variable to store the total points
 
     public GameController() {
         this.currentLevel = null;
         this.currentDeck = null;
         this.gameBoard = null;
+        this.totalPoints = 0;
     }
 
     public void playGame() {
-        levelNumber = 1; // Set the initial level number
+        levelNumber = 3; // Set the initial level number
         initializeGame(levelNumber); // Initialize the current level
 
         while (currentLevel != null && !currentLevel.isFinished() && !currentLevel.isGameOverEarly()) {
@@ -65,11 +66,15 @@ public class GameController {
 
             // Check if the level is finished
             if (currentLevel.isFinished()) {
+                totalPoints += calculatePoints(); // Add the points to the totalPoints variable
                 System.out.println("Level " + levelNumber + " completed!");
+                System.out.println("Total Points: " + totalPoints); // Print the updated total points
             }
 
             if (currentLevel.isGameOverEarly()) {
+                totalPoints += calculatePoints(); // Add the points to the totalPoints variable
                 System.out.println("Game over! You've made too many mistakes...");
+                System.out.println("Total Points: " + totalPoints); // Print the updated total points
                 break;
             }
         }
