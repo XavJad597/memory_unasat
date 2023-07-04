@@ -26,7 +26,8 @@ public class UpdateManager {
             updateStatement.setString(2, newUsername);
 
             int rowsAffected = updateStatement.executeUpdate();
-            return rowsAffected > 0;
+            System.out.println("nah, here");
+            return rowsAffected >1;
         } catch (SQLException e) {
             System.out.println("Error occurred during profile update: " + e.getMessage());
             e.printStackTrace();
@@ -41,7 +42,8 @@ public class UpdateManager {
             }
         }
 
-        return false;
+        System.out.println("here");
+            return false;
     }
 
   public   boolean profileExists(String userName,String userPassword) throws SQLException {
