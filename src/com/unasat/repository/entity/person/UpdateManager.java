@@ -1,4 +1,5 @@
 
+/*
 package com.unasat.repository.entity.person;
 
 import com.unasat.config.DatabaseManager;
@@ -17,7 +18,11 @@ public class UpdateManager {
 
 
     public boolean updateProfile(String newUsername, String newPassword)throws SQLException {
-        String updateQuery = "UPDATE player SET  p_password = ? WHERE username = ?";
+
+        String updateQuery = "UPDATE player SET username = ?, p_password = ? WHERE player_id = (SELECT MAX(player_id) WHERE player_id = ?)";
+        */
+/*String updateQuery = "UPDATE player SET  p_password = ? WHERE username = ?";*//*
+
         Connection connection = manageUpdate.getConnection();
 
         try {
@@ -73,3 +78,4 @@ public class UpdateManager {
         return false;
     } }
 
+*/
