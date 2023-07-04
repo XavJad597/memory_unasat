@@ -18,14 +18,14 @@ public class LoginManager {
     }
 
     // Login to your profile
-    public boolean login(String userName, String userPassword)throws SQLException {
+    public boolean login()throws SQLException {
 
       Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter your username: ");
-        userName = scanner.nextLine();
+        String userName = scanner.nextLine();
         System.out.print("Enter your password: ");
-        userPassword = scanner.nextLine();
+        String userPassword = scanner.nextLine();
 
         Connection connection = databaseManager.getConnection();
 

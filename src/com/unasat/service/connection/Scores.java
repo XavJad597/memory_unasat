@@ -1,9 +1,10 @@
 package com.unasat.service.connection;
 
-import java.sql.*;
-import java.util.ArrayList;
 import com.unasat.config.DatabaseManager;
 import com.unasat.service.operations.GameController;
+
+import java.sql.*;
+import java.util.ArrayList;
 
 public class Scores {
     private GameController gameController;
@@ -12,20 +13,19 @@ public class Scores {
 
     public Scores() {
         gameController = new GameController();
-        databaseManager = new DatabaseManager();
+        databaseManager = new DatabaseManager("jdbc:mysql://localhost:3306/memoryg", "root", "root");
     }
 
-    public void   sendScore(int playerId) {
+    public void   sendScore() {
         int score = gameController.calculatePoints();
 
-        String insertScoreQuery = "INSERT INTO game (player_id, score) VALUES (?, ?)";
+        String insertScoreQuery = "INSERT INTO game (score) VALUES (?)";
 
-        try (Connection connection = databaseManager.getConnection("jdbc:mysql://localhost:3306/memoryg", "root", "root");
+        try (Connection connection = databaseManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(insertScoreQuery)) {
 
             // Set the parameter values
-            statement.setInt(1, playerId);
-            statement.setInt(2, score);
+            statement.setInt(1, score);
 
             // Execute the insert query
             int rowsAffected = statement.executeUpdate();

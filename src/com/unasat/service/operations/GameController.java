@@ -1,11 +1,10 @@
 package com.unasat.service.operations;
 
-import java.util.Collections;
-import java.util.Objects;
 import java.util.Scanner;
-import java.util.ArrayList;
+
 
 public class GameController {
+
     private Level currentLevel;
     private int levelNumber;
     private Deck currentDeck;
@@ -20,7 +19,7 @@ public class GameController {
     }
 
     public void playGame() {
-        levelNumber = 3; // Set the initial level number
+        levelNumber = 1; // Set the initial level number
         initializeGame(levelNumber); // Initialize the current level
 
         while (currentLevel != null && !currentLevel.isFinished() && !currentLevel.isGameOverEarly()) {
@@ -246,6 +245,8 @@ public class GameController {
         int remainingMistakes = 10 - currentLevel.getMistakes();
         return (currentLevel.getPoints()) + ((remainingMistakes > 0) ? remainingMistakes * 3 : 0);
     }
+
+
 
     public boolean allCardsMatched() {
         for (Boolean card : currentDeck.flippedCards) {
