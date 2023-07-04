@@ -5,7 +5,7 @@ create table player (
 player_id int auto_increment primary key,
 birth_date      date,
 username      varchar(50) unique,
-password      varchar(50)
+p_password      varchar(50)
 );
 
 create table game (
