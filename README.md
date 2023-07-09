@@ -73,7 +73,7 @@ The steps to run the project:
 You can either use Amazon Corretto or Oracle JDK. 
 
 ### Step 2. Download the project from Github
-The Project is uploaded on Microsoft Github
+The Project is uploaded on  Github
 
 ### Step 3. Run the project
 Run the project in your IDE or text editor.
@@ -82,21 +82,23 @@ Run the project in your IDE or text editor.
 
 When starting the application, the player will be presented with 3 options. They are:
 
-- **Exit game**. By choosing this option, the player/user exits the game.
-
-- **Sign up**. Before being able to play the game, the player must first create an account. This can be done using the “sign up” option. The player will be asked to enter the username, date of birth and password. If the registration is successful, the player is registered in the system and can access the game.
-
+- **Sign up**. Before being able to play the game, the player must first create an account. This can be done using the “sign up” option. The player will be asked to enter the username, date of birth and password. If the registration is successful, the player is registered in the system and can access the game. They will have to log in again to go to the main menu.
+  
 - **Log in**. The player is asked to enter his or her username and password to access the game. After succesfully logging in, the player will be transported to the main menu. In which they will be presented with 3 options.
+
+- **Exit game**. By choosing this option, the player/user exits the game.
 
 - **Play Game**. The player is asked to enter his or her username and password to access the game, so that they can then play it.
 
+- **See Leaderboard**. This allows the 10 highest scores with associated names to be retrieved.
+- 
 - **Exit Game**. By choosing this option, the player/user will exit the game.
 
-- **See Leaderboard**. This allows the 10 highest scores with associated names to be retrieved.
   
 Once in the game, the player will be presented with the first level which has 12 cards.
 If completed, the player will then go to the next level.
-There are a total of 3 level, each with their own respective deck.
+
+There are a total of 3 levels, each with their own respective deck.
 Level 1's deck has 12 cards, level 2's deck has 20 cards and level 3's deck has 30 cards. 
 In each level the player/user has 10 mistakes that are allowed to be made
 
