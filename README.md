@@ -51,10 +51,10 @@ The folder structure of the workspace contains:
                                   ├── GameController.java
                                   ├──  Hard.class
                                   ├──  Levels.class             
-                                  └──  Medium.class
+                                  ├── Medium.class
+                                  └──  Menus.java
 
-    ├── README.MD
-    ├── CompleteGame.java            
+    ├── README.MD           
     ├── Application.java
     └──memory_game_unasat.iml
     
