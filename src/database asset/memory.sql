@@ -12,16 +12,9 @@ create table game (
 game_id    int auto_increment primary key,     /* primary key */       
 player_id    int , /*foreign key*/
 score         int,
-rounds_played    int 
 );
 
 
-create table activity (
-activity_id     int auto_increment primary key ,/*primary key*/
-player_id       int ,  /*foreign key*/
-game_id         int,   /*foreign key*/
-rounds_played      int
-);
 
 
 
@@ -30,12 +23,9 @@ rounds_played      int
            
 -- foreign keys ---
 
-
 alter table game 
 add foreign key (player_id) references player(player_id);
 
-alter table activity
-add foreign key (player_id) references player(player_id);
 
 alter table activity
 add foreign key (game_id) references game(game_id);
