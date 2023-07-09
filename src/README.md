@@ -30,29 +30,29 @@ The folder structure of the workspace contains:
           ├──com
               ├──unasat
                  ├── config
-                     ├──DB Connector                    
-                     ├          └── DB manager
+                     ├──dbconnector                    
+                     ├          └── DatabaseManager
                      ├
-                     ├── LoginManager.class
-                     ├──  Menu.class       
-                     ├── Scores.class
-                     └──SignUp.class
-                 ├──  Repository
-                           ├── Entity
-                                  └──  Person.class
-                           ├──  Utility             
-                                      └──  mysql-connector-java-8.0.33 jar
-                 ├──  Services
-                         └── Operations                 
-                                  ├── Card.class
-                                  ├── Deck.class
-                                  ├── Easy.class
-                                  ├── GameBoard.class
-                                  ├── GameController,class
+                     ├── LoginManager.java
+                     ├── Menu.java       
+                     ├── Scores.java
+                     └── SignUp.java
+                 ├──  repository
+                           ├── entity
+                                  └──  Person.java
+                           ├── utility             
+                                      └──  mysql-connector-java-8.0.33.jar
+                 ├──  services
+                         └── operations                 
+                                  ├── Card.java
+                                  ├── Deck.java
+                                  ├── Easy.java
+                                  ├── GameBoard.java
+                                  ├── GameController.java
                                   ├──  Hard.class
                                   ├──  Levels.class             
                                   └──  Medium.class
-    ├──   CompletieGame.java            
+    ├── CompleteGame.java            
     ├── Application.java
     ├── memory_game_team2.iml
     └── README.MD
@@ -78,28 +78,30 @@ Run the project in your IDE or text editor.
 
 ## Instructions
 
-When starting the application, the player is given the option to choose between 3 options. These are:
+When starting the application, the player will be presented with 3 options. They are:
 
 - **Exit game**. By choosing this option, the player/user exits the game.
 
 - **Sign up**. Before being able to play the game, the player must first create an account. This can be done using the “sign up” option. The player will be asked to enter the username, date of birth and password. If the registration is successful, the player is registered in the system and can access the game.
 
-- **Log in**. The player is asked to enter his or her username and password to access the game and is then transported to another menu which is where he he/she has  3 options again
+- **Log in**. The player is asked to enter his or her username and password to access the game. After succesfully logging in, the player will be transported to the main menu. In which they will be presented with 3 options.
 
-- **play game**. The player is asked to enter his or her username and password to access the game and then play.
+- **Play Game**. The player is asked to enter his or her username and password to access the game, so that they can then play it.
 
-- **Exit game**. By choosing this option, the player/user exits the game.
+- **Exit Game**. By choosing this option, the player/user will exit the game.
 
-- ** see leaderboard**. This allows the 10 highest scores with associated names to be retrieved.
-- 
-Once in the game the player will will be met with a level 1 card deck which has about 12 cards,Level 1 has 12 cards 
-Level 2  has 20 cards and levl3 30 cards 
+- **See Leaderboard**. This allows the 10 highest scores with associated names to be retrieved.
+  
+Once in the game, the player will be presented with the first level which has 12 cards.
+If completed, the player will then go to the next level.
+There are a total of 3 level, each with their own respective deck.
+Level 1's deck has 12 cards, level 2's deck has 20 cards and level 3's deck has 30 cards. 
 In each level the player/user has 10 mistakes that are allowed to be made
 
 If the player has completed or made 10 mistakes in a level they have to option :
--**to retry**
--**head to the main menu **
--**exit the game **
+-**Retry**
+-**Main Menu**
+-**Exit The Game**
 
 
  
