@@ -91,7 +91,7 @@ When starting the application, the player will be presented with 3 options. They
 - **Play Game**. The player is asked to enter his or her username and password to access the game, so that they can then play it.
 
 - **See Leaderboard**. This allows the 10 highest scores with associated names to be retrieved.
-- 
+
 - **Exit Game**. By choosing this option, the player/user will exit the game.
 
   
