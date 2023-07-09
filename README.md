@@ -52,10 +52,12 @@ The folder structure of the workspace contains:
                                   ├──  Hard.class
                                   ├──  Levels.class             
                                   └──  Medium.class
+
+    ├── README.MD
     ├── CompleteGame.java            
     ├── Application.java
-    ├── memory_game_team2.iml
-    └── README.MD
+    └──memory_game_unasat.iml
+    
 ```
 ## 1.2 Tools Required
 The workspace following tools to develop and run the project:
