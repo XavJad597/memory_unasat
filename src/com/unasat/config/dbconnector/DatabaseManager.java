@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+//database info stored
 public class DatabaseManager {
     private String url = "jdbc:mysql://localhost:3306/memoryg";
     private String username = "root";

@@ -30,6 +30,7 @@ public class LoginManager {
 
       Scanner scanner = new Scanner(System.in);
 
+      //give your info
         System.out.print("Enter your username: ");
         String userName = scanner.nextLine();
 
