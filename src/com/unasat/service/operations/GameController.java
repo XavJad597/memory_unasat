@@ -1,24 +1,33 @@
 package com.unasat.service.operations;
 
-import java.util.Scanner;
+import com.unasat.config.Scores;
 
+import java.sql.SQLException;
+import java.util.Scanner;
+import static com.unasat.config.LoginManager.player1;
 
 public class GameController {
-
     private Level currentLevel;
     private int levelNumber;
     private Deck currentDeck;
     private GameBoard gameBoard;
     private int totalPoints; // Variable to store the total points
+    Scores scores = new Scores();
 
-    public GameController() {
+    private boolean gameIsDone = false;
+
+    public GameController() throws SQLException {
         this.currentLevel = null;
         this.currentDeck = null;
         this.gameBoard = null;
         this.totalPoints = 0;
     }
 
-    public void playGame() {
+    private void setGameIsDone(boolean gameIsDone) {
+        this.gameIsDone = gameIsDone;
+    }
+
+    public void playGame() throws SQLException {
         levelNumber = 1; // Set the initial level number
         initializeGame(levelNumber); // Initialize the current level
 
@@ -37,16 +46,17 @@ public class GameController {
         }
 
         if (currentLevel != null && currentLevel.isGameOverEarly()) {
-            System.out.println("Game over early");
+            System.out.println("Application over early");
+        }
+
+        if (levelNumber >= 3) {
+            scores.sendScoreToDatabase(totalPoints, player1.getUserName());
         }
     }
 
-
-
-    public void playLevel(Deck currentDeck) {
+    public void playLevel(Deck currentDeck) throws SQLException {
         int cardNumber1, cardNumber2;
         boolean cardsMatched;
-
 
         while (!currentLevel.isFinished() && !currentLevel.isGameOverEarly()) {
             printLevel(); // Print the current level
@@ -72,15 +82,18 @@ public class GameController {
 
             if (currentLevel.isGameOverEarly()) {
                 totalPoints += calculatePoints(); // Add the points to the totalPoints variable
-                System.out.println("Game over! You've made too many mistakes...");
                 System.out.println("Total Points: " + totalPoints); // Print the updated total points
+
+                setGameIsDone(true);
+
+                scores.sendScoreToDatabase(totalPoints, player1.getUserName());
+
                 break;
             }
         }
     }
 
-    private void initializeGame(int levelNumber) {
-
+    private void initializeGame(int levelNumber) throws SQLException {
         // Create the corresponding level based on the level number
         switch (levelNumber) {
             case 1:
@@ -101,8 +114,8 @@ public class GameController {
         playLevel(currentDeck);
     }
 
+    // Level related methods
 
-    //Level related methods
     private Deck getCorrespondingDeck(Level level) {
         if (level instanceof EasyLevel) {
             return new FirstDeck();
@@ -129,18 +142,15 @@ public class GameController {
         }
     }
 
-
     public void printLevel() {
-            System.out.println("Level: " + levelNumber);
-            System.out.println("Number of mistakes made: " + currentLevel.getMistakes());
-            System.out.println("Points: " + currentLevel.getPoints());
-            System.out.println("Game Board:");
-            gameBoard.printBoard();
-        }
-
+        System.out.println("Level: " + levelNumber);
+        System.out.println("Number of mistakes made: " + currentLevel.getMistakes());
+        System.out.println("Points: " + currentLevel.getPoints());
+        System.out.println("Application Board:");
+        gameBoard.printBoard();
+    }
 
     public void advanceToNextLevel() {
-
         if (currentLevel instanceof EasyLevel) {
             currentLevel = new MediumLevel();
             currentDeck = new SecondDeck();
@@ -149,14 +159,11 @@ public class GameController {
             currentDeck = new ThirdDeck();
         } else if (currentLevel instanceof HardLevel) {
             // If the current level is already the hardest level, you can choose to handle it in a specific way
-            System.out.println("You have completed the highest level. Game completed!");
+            System.out.println("You have completed the last level. Application completed!");
             currentLevel = null; // Set currentLevel to null to indicate game completion
             currentDeck = null; // Set currentDeck to null
-            return; // Return here to prevent further execution
         }
-
     }
-
 
     public boolean compareCards(int cardNumber1, int cardNumber2) {
         Character card1 = getCardAt(cardNumber1);
@@ -200,7 +207,6 @@ public class GameController {
         }
     }
 
-
     private int getPlayerInput(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.print(prompt);
@@ -224,8 +230,6 @@ public class GameController {
         }
     }
 
-
-
     public Character getCardAt(int cardNumber) {
         if (cardNumber >= 1 && cardNumber <= currentDeck.getTotalCards()) {
             return gameBoard.getCard(cardNumber);
@@ -238,15 +242,12 @@ public class GameController {
     public void flipCard(int cardNumber) {
         gameBoard.initializeBoard(cardNumber);
         currentDeck.flipCard(cardNumber); // Flip the card in the deck
-//        gameBoard.printBoard();
     }
 
-   public int calculatePoints() {
+    public int calculatePoints() {
         int remainingMistakes = 10 - currentLevel.getMistakes();
         return (currentLevel.getPoints()) + ((remainingMistakes > 0) ? remainingMistakes * 3 : 0);
     }
-
-
 
     public boolean allCardsMatched() {
         for (Boolean card : currentDeck.flippedCards) {
@@ -256,7 +257,4 @@ public class GameController {
         }
         return true; // All cards have been matched
     }
-
-
-
 }

@@ -53,27 +53,15 @@ public class Level {
 
 class EasyLevel extends Level {
 
-    public EasyLevel(int numMoves, int points, int mistakes){
-        super(0, 0);
-    }
-
     public EasyLevel() {}
 }
 
 class MediumLevel extends Level {
 
-    public MediumLevel(int numMoves, int points, int mistakes){
-        super(0, 0);
-    }
-
     public MediumLevel() {}
 }
 
 class HardLevel extends Level {
-
-    public HardLevel(int numMoves, int points, int mistakes){
-        super(0, 0);
-    }
 
     public HardLevel() {}
 }
