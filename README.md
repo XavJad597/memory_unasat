@@ -102,10 +102,6 @@ There are a total of 3 levels, each with their own respective deck.
 Level 1's deck has 12 cards, level 2's deck has 20 cards and level 3's deck has 30 cards. 
 In each level the player/user has 10 mistakes that are allowed to be made
 
-If the player has completed or made 10 mistakes in a level they have to option :
--**Retry**
--**Main Menu**
--**Exit The Game**
-
+If the player has made 10 mistakes they will return to the main menu 
 
  
