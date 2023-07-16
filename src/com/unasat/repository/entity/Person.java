@@ -1,7 +1,5 @@
 package com.unasat.repository.entity;
 
-import java.util.Date;
-
 public class Person {
 
     private String userName;

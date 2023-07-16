@@ -16,7 +16,7 @@ public class GameController {
     Scores scores = new Scores();
 
 
-    public GameController() throws SQLException {
+    public GameController() {
         this.currentLevel = null;
         this.currentDeck = null;
         this.gameBoard = null;

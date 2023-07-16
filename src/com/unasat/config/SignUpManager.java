@@ -1,7 +1,6 @@
 package com.unasat.config;
 
 import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
-import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 import com.unasat.config.dbconnector.DatabaseManager;
 
 import java.sql.Connection;
