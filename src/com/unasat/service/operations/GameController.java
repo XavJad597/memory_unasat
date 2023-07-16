@@ -3,6 +3,7 @@ package com.unasat.service.operations;
 import com.unasat.config.Scores;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import static com.unasat.config.LoginManager.player1;
 
@@ -14,17 +15,12 @@ public class GameController {
     private int totalPoints; // Variable to store the total points
     Scores scores = new Scores();
 
-    private boolean gameIsDone = false;
 
     public GameController() throws SQLException {
         this.currentLevel = null;
         this.currentDeck = null;
         this.gameBoard = null;
         this.totalPoints = 0;
-    }
-
-    private void setGameIsDone(boolean gameIsDone) {
-        this.gameIsDone = gameIsDone;
     }
 
     public void playGame() throws SQLException {
@@ -35,18 +31,22 @@ public class GameController {
             printLevel(); // Print the current level
 
             // Play the current level
-            playLevel(currentDeck);
+            playLevel();
         }
 
         if (currentLevel != null && currentLevel.isFinished()) {
-            System.out.println("Congratulations, you have completed level " + levelNumber);
+            for (int i = 0; i < 50; i++) {
+                System.out.println("\n");
+            }
+
+            System.out.println("Congratulations, you have completed level " + levelNumber + "\n");
             levelNumber++;
             advanceToNextLevel(); // Advance to the next level
             initializeGame(levelNumber); // Initialize the new level
         }
 
         if (currentLevel != null && currentLevel.isGameOverEarly()) {
-            System.out.println("Application over early");
+            System.out.println("It seems like you've made more than 10 mistakes");
         }
 
         if (levelNumber >= 3) {
@@ -54,7 +54,7 @@ public class GameController {
         }
     }
 
-    public void playLevel(Deck currentDeck) throws SQLException {
+    public void playLevel() throws SQLException {
         int cardNumber1, cardNumber2;
         boolean cardsMatched;
 
@@ -84,9 +84,11 @@ public class GameController {
                 totalPoints += calculatePoints(); // Add the points to the totalPoints variable
                 System.out.println("Total Points: " + totalPoints); // Print the updated total points
 
-                setGameIsDone(true);
+
 
                 scores.sendScoreToDatabase(totalPoints, player1.getUserName());
+
+                totalPoints = 0;
 
                 break;
             }
@@ -111,7 +113,7 @@ public class GameController {
         gameBoard = getCorrespondingGameBoard(currentLevel); // Initialize the game board
         currentDeck = getCorrespondingDeck(currentLevel); // Set the initial deck based on the level
 
-        playLevel(currentDeck);
+        playLevel();
     }
 
     // Level related methods
@@ -143,6 +145,8 @@ public class GameController {
     }
 
     public void printLevel() {
+
+
         System.out.println("Level: " + levelNumber);
         System.out.println("Number of mistakes made: " + currentLevel.getMistakes());
         System.out.println("Points: " + currentLevel.getPoints());
@@ -162,6 +166,7 @@ public class GameController {
             System.out.println("You have completed the last level. Application completed!");
             currentLevel = null; // Set currentLevel to null to indicate game completion
             currentDeck = null; // Set currentDeck to null
+            totalPoints = 0;
         }
     }
 
@@ -227,6 +232,9 @@ public class GameController {
         } catch (NumberFormatException e) {
             System.out.println("Invalid input! Please enter a valid card number.");
             return -1; // Return a negative value to indicate an invalid input
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Please enter a valid card number.");
+            return -1;
         }
     }
 

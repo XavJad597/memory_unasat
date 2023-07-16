@@ -2,7 +2,7 @@ package com.unasat.service.operations;
 
 import com.unasat.config.LoginManager;
 import com.unasat.config.Scores;
-import com.unasat.config.SignUp;
+import com.unasat.config.SignUpManager;
 import com.unasat.config.dbconnector.DatabaseManager;
 
 import java.sql.SQLException;
@@ -13,14 +13,14 @@ public class Menus {
 
     Scanner scanner = new Scanner(System.in);
     LoginManager login;
-    SignUp signUp;
+    SignUpManager signUpManager;
     DatabaseManager databaseManager;
     GameController game = new GameController();
     Scores scores = new Scores();
     public Menus(DatabaseManager databaseManager) throws SQLException {
         this.databaseManager = databaseManager;
         this.login = new LoginManager(databaseManager);
-        this.signUp = new SignUp();
+        this.signUpManager = new SignUpManager();
     }
     public Menus() throws SQLException {
     }
@@ -59,6 +59,9 @@ public class Menus {
                             System.out.println("Login successful!");
                             // Continue with logged-in user flow or any other desired logic
 
+                            for (int i = 0; i < 50; i++) {
+                                System.out.println("\n");
+                            }
                             mainMenu();
 
                         } else {
@@ -69,7 +72,7 @@ public class Menus {
                     }
                     break;
                 case 2:
-                    signUp.signUp();
+                    signUpManager.signUp();
                     break;
                 case 3:
                     System.out.println("Exiting game.......");
@@ -106,6 +109,9 @@ public class Menus {
 
             switch (userChoice) {
                 case 1:
+                    for (int i = 0; i < 50; i++) {
+                        System.out.println("\n");
+                    }
                         game.playGame();
                     break;
                 case 2:

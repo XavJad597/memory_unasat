@@ -15,7 +15,6 @@ public class LoginManager {
     public static Person player1 = new Person();
 
     public DatabaseManager databaseManager;
-    String stayName;
 
     //Constructors
     public LoginManager(DatabaseManager loginManager) {

@@ -31,6 +31,8 @@ public class Scores {
             insertStatement.setInt(1, totalGamePoints);
             insertStatement.setInt(2, playerId);
 
+
+
             int rowsInserted = insertStatement.executeUpdate();
 
             if (rowsInserted > 0) {
@@ -44,9 +46,13 @@ public class Scores {
     }
 
     public String getScoreboard() throws SQLException {
+
+        for (int i = 0; i < 50; i++) {
+            System.out.println("\n");
+        }
+
         Connection conn = databaseManager.getConnection();
         ResultSet rs;
-        int playerId = getPlayerId(userName1);
 
         try {
 
@@ -72,6 +78,8 @@ public class Scores {
                 System.out.println(username + "     |     " + score);
             }
 
+            System.out.println("\n\n");
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -84,7 +92,6 @@ public class Scores {
 
         try (Connection conn = databaseManager.getConnection();
              CallableStatement callableStatement = conn.prepareCall(getPlayerIdQuery)) {
-
 
 
             callableStatement.setString(1, name);

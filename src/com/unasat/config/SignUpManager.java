@@ -1,5 +1,7 @@
 package com.unasat.config;
 
+import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
+import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 import com.unasat.config.dbconnector.DatabaseManager;
 
 import java.sql.Connection;
@@ -7,10 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class SignUp {
+public class SignUpManager {
     Connection connection;
 
-    public SignUp() {
+    public SignUpManager() {
     }
 
     //Signup method
@@ -20,7 +22,7 @@ public class SignUp {
         System.out.println(" Sign up");
 
        // enter your info
-        System.out.print("Enter your birthdate: ");
+        System.out.print("Enter your birthdate(yyyy-mm-dd):");
         String birthDate = scanner.nextLine();
         System.out.print("Enter your username: ");
         String userName = scanner.nextLine();
@@ -30,7 +32,6 @@ public class SignUp {
         //execute the  InsertQuery
         insertPlayerData(birthDate, userName, userPassword);
 
-        System.out.println("signed in!!");
     }
 
 
@@ -41,7 +42,6 @@ public class SignUp {
         dbm.getConnection();
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = dbm.getConnection();
 
 
@@ -51,12 +51,21 @@ public class SignUp {
             statement.setString(3, userPassword);
             statement.executeUpdate();
 
-        } catch (SQLException e) {
+            System.out.println("Successfully signed up");
+
+        }catch (MysqlDataTruncation e) {
+            for (int i = 0; i < 50; i++) {
+                System.out.println("\n");
+            }
+
+            System.out.println("\nYour date format isn't correctly");
+            System.out.println("Please re-enter the correct date\n");
+        }
+        catch (SQLException e) {
             System.out.println("Error: Failed to execute the query.");
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } finally {
+        }
+        finally {
             if (connection != null) {
                 try {
                     connection.close();

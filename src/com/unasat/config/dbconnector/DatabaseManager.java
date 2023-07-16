@@ -26,15 +26,4 @@ public class DatabaseManager {
         return DriverManager.getConnection(url, username, password);
     }
 
-    // Getters
-
-    public String getUsername() {
-        // Getter for the username
-        return username;
-    }
-
-    public String getPassword() {
-        // Getter for the password
-        return password;
-    }
 }

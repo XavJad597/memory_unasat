@@ -5,9 +5,6 @@ import java.util.Date;
 public class Person {
 
     private String userName;
-    private String password;
-    private int pointsPerGame;
-    private Date birthDate;
 
 
     //Constructors
